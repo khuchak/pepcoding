@@ -17,7 +17,7 @@ function fn(inp){
   for(let i=0;i<allfiles.length;i++){
       let str=allfiles[i];
       let arr2=str.split(".");
-     // let y=fs.lstatSync(path.join(inp,allfiles[i]));
+     let y=fs.lstatSync(path.join(inp,allfiles[i]));
       if (media.includes(arr2[1])){
          fs.copyFileSync(path.join(inp,allfiles[i]),path.join(inp,"organized files","media",allfiles[i]));
       }
@@ -30,7 +30,7 @@ function fn(inp){
       else if(app.includes(arr2[1])){
         fs.copyFileSync(path.join(inp,allfiles[i]),path.join(inp,"organized files","app",allfiles[i]));
       }
-      else if(!(arr2[0].normalize()===q.normalize())){
+      else if(y.isFile()){
           //console.log!(y.isDirectory());
         fs.copyFileSync(path.join(inp,allfiles[i]),path.join(inp,"organized files","others",allfiles[i]));
       }
